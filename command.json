@@ -1,0 +1,32 @@
+{
+  "test": {
+    "regex": "test\\((?<path>.*?)\\)",
+    "replacePattern": [
+      "path"
+    ],
+    "runCommand": [
+      "C:\\Users\\hoge\\Desktop\\Yomiage\\run.bat",
+      "\"__path__\""
+    ],
+    "env": {
+      "PATH": "C:\\windows\\system32"
+    },
+    "path": "C:\\Users\\hoge\\Desktop\\Yomiage",
+    "immediate": false
+  },
+  "test_im": {
+    "regex": "testim\\((?<path>.*?)\\)",
+    "replacePattern": [
+      "path"
+    ],
+    "runCommand": [
+      "C:\\Users\\hoge\\Desktop\\Yomiage\\run2.bat",
+      "\"__path__\""
+    ],
+    "env": {
+      "PATH": "C:\\windows\\system32"
+    },
+    "path": "C:\\Users\\hoge\\Desktop\\Yomiage",
+    "immediate": true
+  }
+}

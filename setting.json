@@ -1,0 +1,9 @@
+{
+  "listeningPort": 50083,
+  "bouyomiChanPort": 50080,
+  "bouyomiChanHost": "localhost",
+  "logFileName": "bouyomi-bridge.log",
+  "consoleLogLevel": "ALL",
+  "fileLogLevel": "INFO",
+  "logFormat": "%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL %4$s | %5$s%6$s%n"
+}
