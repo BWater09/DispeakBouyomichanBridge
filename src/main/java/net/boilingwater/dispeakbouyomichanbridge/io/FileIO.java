@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 
 public class FileIO {
-    public static final String getFileAllAsString(String fileName) {
+    public static String getFileAllAsString(String fileName) {
         String fileString = "";
         try {
             fileString = FileUtils.readFileToString(

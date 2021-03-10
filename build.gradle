@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
+    id 'application'
+}
+
+group 'net.boilingwater'
+version '1.0-SNAPSHOT'
+mainClassName = "net.boilingwater.dispeakbouyomichanbridge.Main"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'net.boilingwater.dispeakbouyomichanbridge.Main'
+    }
+}
+//----------------------------//
+
+task copyConfig(type: Copy) {
+    from 'command.json'
+    from 'setting.json'
+    from 'system-command.json'
+    into 'build/libs'
+}

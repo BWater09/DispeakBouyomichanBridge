@@ -27,7 +27,7 @@ public class Command {
     private static Map<String, CommandBody> readJson() {
         Map<String, CommandBody> map = null;
         try {
-            map = new ObjectMapper().readValue(FileIO.getFileAllAsString("command"), new TypeReference<Map<String, CommandBody>>() {
+            map = new ObjectMapper().readValue(FileIO.getFileAllAsString("command"), new TypeReference<>() {
             });
         } catch (IOException e) {
             e.printStackTrace();

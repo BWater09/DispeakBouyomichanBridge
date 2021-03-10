@@ -23,7 +23,7 @@ public class Setting {
     private static Map<String, String> readJson() {
         Map<String, String> map = null;
         try {
-            map = new ObjectMapper().readValue(FileIO.getFileAllAsString("setting"), new TypeReference<Map<String, String>>() {
+            map = new ObjectMapper().readValue(FileIO.getFileAllAsString("setting"), new TypeReference<>() {
             });
         } catch (IOException e) {
             e.printStackTrace();

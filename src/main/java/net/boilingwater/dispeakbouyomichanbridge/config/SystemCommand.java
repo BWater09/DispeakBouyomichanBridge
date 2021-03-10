@@ -23,7 +23,7 @@ public class SystemCommand {
     private static Map<String, String> readJson() {
         Map<String, String> map = null;
         try {
-            map = new ObjectMapper().readValue(FileIO.getFileAllAsString("system-command"), new TypeReference<Map<String, String>>() {
+            map = new ObjectMapper().readValue(FileIO.getFileAllAsString("system-command"), new TypeReference<>() {
             });
         } catch (IOException e) {
             e.printStackTrace();

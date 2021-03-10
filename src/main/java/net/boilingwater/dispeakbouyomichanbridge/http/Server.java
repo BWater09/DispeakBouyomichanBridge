@@ -35,15 +35,13 @@ public class Server {
 
     private Map<String, String> getQueryMap(HttpExchange exchange) {
         String uriQuery = exchange.getRequestURI().getQuery();
-        HashMap<String, String> hashMap = new HashMap<String, String>();
+        HashMap<String, String> hashMap = new HashMap<>();
         String[] split = uriQuery.split("&");
         for (String pair : split) {
             String[] entry = pair.split("=");
             hashMap.put(entry[0], String.join("=", Arrays.copyOfRange(entry, 1, entry.length)));
         }
-        hashMap.forEach((s, s2) -> {
-            logger.fine(String.format("Query - %s:%s", s, s2));
-        });
+        hashMap.forEach((s, s2) -> logger.fine(String.format("Query - %s:%s", s, s2)));
         return hashMap;
     }
 
@@ -105,7 +103,7 @@ public class Server {
     /**
      * ハンドル処理
      *
-     * @param exchange
+     * @param exchange HttpExchange
      */
     private void handle(HttpExchange exchange) {
         try {
@@ -119,7 +117,7 @@ public class Server {
 
         TreeMap<Integer, RunCommand> commandcommandTreeMap = new TreeMap<>();
         TreeMap<Integer, RunCommand> immediateCommandTreeMap = new TreeMap<>();
-        Matcher matcher = null;
+        Matcher matcher;
         boolean found;
         do {
             found = false;
@@ -152,7 +150,7 @@ public class Server {
     }
 
     private String handleSystemCommand(String text) {
-        Matcher matcher = null;
+        Matcher matcher;
         boolean found;
         do {
             found = false;
