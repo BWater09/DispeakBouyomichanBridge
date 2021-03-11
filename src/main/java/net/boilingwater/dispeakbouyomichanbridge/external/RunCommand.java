@@ -29,6 +29,7 @@ public class RunCommand extends Thread {
         builder.command(replaceCommand(command, replaceMap));
         builder.redirectErrorStream(true);
         builder.directory(new File(command.getPath()));
+        builder.environment().clear();
         builder.environment().putAll(command.getEnv());
         logger.fine("Set Environment Variable " + Arrays.toString(command.getEnv().entrySet().toArray()));
     }

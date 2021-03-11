@@ -70,7 +70,7 @@ public class Server {
         server.setExecutor(Executors.newSingleThreadExecutor());
         server.createContext("/", this::handle);
         server.start();
-        Client.sendToBouyomiChan("ディスピーク 棒読みちゃんブリッジ" + Main.VERSION + "が起動しました！");
+        Client.sendToBouyomiChan("ディスピーク 棒読みちゃんブリッジ " + Main.VERSION + "が起動しました！");
         logger.info("Run Server!");
     }
 

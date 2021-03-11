@@ -23,11 +23,11 @@ public class SystemCommand {
     private static Map<String, String> readJson() {
         Map<String, String> map = null;
         try {
-            map = new ObjectMapper().readValue(FileIO.getFileAllAsString("system-command"), new TypeReference<>() {
+            map = new ObjectMapper().readValue(FileIO.getConfigFileAsString("system-command"), new TypeReference<>() {
             });
         } catch (IOException e) {
             e.printStackTrace();
-            Logger.getGlobal().severe("JSON wasn't parsed Map Object! Exit Program");
+            Logger.getGlobal().severe("JSON isn't parsed Map Object! Exit Program");
             System.exit(1);
         }
         return map;

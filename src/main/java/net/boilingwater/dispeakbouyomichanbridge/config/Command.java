@@ -1,12 +1,14 @@
 package net.boilingwater.dispeakbouyomichanbridge.config;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.boilingwater.dispeakbouyomichanbridge.io.FileIO;
+import org.apache.commons.lang3.StringUtils;
 
 public class Command {
     private static Command COMMAND = new Command();
@@ -27,35 +29,43 @@ public class Command {
     private static Map<String, CommandBody> readJson() {
         Map<String, CommandBody> map = null;
         try {
-            map = new ObjectMapper().readValue(FileIO.getFileAllAsString("command"), new TypeReference<>() {
+            map = new ObjectMapper().readValue(FileIO.getConfigFileAsString("command"), new TypeReference<>() {
             });
+            map.values().forEach(CommandBody::loadEnvFiles);
         } catch (IOException e) {
             e.printStackTrace();
-            Logger.getGlobal().severe("JSON wasn't parsed CommandBody Object! Exit Program");
+            Logger.getGlobal().severe("JSON isn't parsed CommandBody Object! Exit Program");
             System.exit(1);
         }
         return map;
     }
-
 
     public static class CommandBody {
         private String regex;
         private String[] replacePattern;
         private String[] runCommand;
         private Map<String, String> env;
+        private String[] envFiles;
         private String path;
         private Boolean immediate;
-
         public CommandBody() {
         }
-
-        public CommandBody(String regex, String[] replacePattern, String[] runCommand, Map<String, String> env, String path, Boolean immediate) {
+        public CommandBody(String regex, String[] replacePattern, String[] runCommand, Map<String, String> env, String[] envFiles, String path, Boolean immediate) {
             this.regex = regex;
             this.replacePattern = replacePattern;
             this.runCommand = runCommand;
             this.env = env;
+            this.envFiles = envFiles;
             this.path = path;
             this.immediate = immediate;
+        }
+
+        public String[] getEnvFiles() {
+            return envFiles;
+        }
+
+        public void setEnvFiles(String[] envFiles) {
+            this.envFiles = envFiles;
         }
 
         public String getRegex() {
@@ -90,7 +100,6 @@ public class Command {
             this.path = path;
         }
 
-
         public String[] getReplacePattern() {
             return replacePattern;
         }
@@ -105,6 +114,21 @@ public class Command {
 
         public void setImmediate(Boolean immediate) {
             this.immediate = immediate;
+        }
+
+        public void loadEnvFiles() {
+            Map<String, String> tmpMap = new HashMap<>();
+            if (envFiles != null) {
+                for (String envFilePath : envFiles) {
+                    if (StringUtils.isNotEmpty(envFilePath)) {
+                        tmpMap.putAll(FileIO.getEnvFileAsMap(envFilePath));
+                    }
+                }
+            }
+            if (env != null) {
+                tmpMap.putAll(env);
+            }
+            env = tmpMap;
         }
     }
 }

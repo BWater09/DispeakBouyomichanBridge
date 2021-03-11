@@ -9,8 +9,11 @@
       "\"__path__\""
     ],
     "env": {
-      "PATH": "C:\\windows\\system32"
+      "fizz": "buzz"
     },
+    "envFiles": [
+      "C:\\Users\\hoge\\Desktop\\Yomiage\\path.env"
+    ],
     "path": "C:\\Users\\hoge\\Desktop\\Yomiage",
     "immediate": false
   },
