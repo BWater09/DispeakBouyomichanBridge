@@ -41,13 +41,15 @@ public class Command {
     }
 
     public static class CommandBody {
+        private Boolean immediate;
         private String regex;
         private String[] replacePattern;
         private String[] runCommand;
         private Map<String, String> env;
         private String[] envFiles;
         private String path;
-        private Boolean immediate;
+        private Map<String, String> stdInOut;
+        private String executionComment;
         public CommandBody() {
         }
         public CommandBody(String regex, String[] replacePattern, String[] runCommand, Map<String, String> env, String[] envFiles, String path, Boolean immediate) {
@@ -58,6 +60,22 @@ public class Command {
             this.envFiles = envFiles;
             this.path = path;
             this.immediate = immediate;
+        }
+
+        public Map<String, String> getStdInOut() {
+            return stdInOut;
+        }
+
+        public void setStdInOut(Map<String, String> stdInOut) {
+            this.stdInOut = stdInOut;
+        }
+
+        public String getExecutionComment() {
+            return executionComment;
+        }
+
+        public void setExecutionComment(String executionComment) {
+            this.executionComment = executionComment;
         }
 
         public String[] getEnvFiles() {

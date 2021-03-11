@@ -115,7 +115,7 @@ public class Server {
 
         input = handleSystemCommand(input);
 
-        TreeMap<Integer, RunCommand> commandcommandTreeMap = new TreeMap<>();
+        TreeMap<Integer, RunCommand> commandTreeMap = new TreeMap<>();
         TreeMap<Integer, RunCommand> immediateCommandTreeMap = new TreeMap<>();
         Matcher matcher;
         boolean found;
@@ -131,7 +131,7 @@ public class Server {
                     if (commandBodySet.getValue().isImmediate()) {
                         immediateCommandTreeMap.put(matcher.start(), new RunCommand(commandBodySet.getValue(), replaceMap, commandBodySet.getKey()));
                     } else {
-                        commandcommandTreeMap.put(matcher.start(), new RunCommand(commandBodySet.getValue(), replaceMap, commandBodySet.getKey()));
+                        commandTreeMap.put(matcher.start(), new RunCommand(commandBodySet.getValue(), replaceMap, commandBodySet.getKey()));
                     }
                     input = matcher.replaceFirst("");
                     logger.fine("Generate Command - " + commandBodySet.getKey());
@@ -144,8 +144,8 @@ public class Server {
         if (!immediateCommandTreeMap.isEmpty()) {
             RunCommand.ExecuteEmergencyThreadsInOrder(immediateCommandTreeMap.values().toArray(new RunCommand[0]));
         }
-        if (!commandcommandTreeMap.isEmpty()) {
-            RunCommand.ExecuteThreadsInOrder(commandcommandTreeMap.values().toArray(new RunCommand[0]));
+        if (!commandTreeMap.isEmpty()) {
+            RunCommand.ExecuteThreadsInOrder(commandTreeMap.values().toArray(new RunCommand[0]));
         }
     }
 

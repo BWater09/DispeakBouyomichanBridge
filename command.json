@@ -15,7 +15,11 @@
       "C:\\Users\\hoge\\Desktop\\Yomiage\\path.env"
     ],
     "path": "C:\\Users\\hoge\\Desktop\\Yomiage",
-    "immediate": false
+    "immediate": false,
+    "stdInOut": {
+      ".*": ""
+    },
+    "executionComment": ""
   },
   "test_im": {
     "regex": "testim\\((?<path>.*?)\\)",
@@ -30,6 +34,10 @@
       "PATH": "C:\\windows\\system32"
     },
     "path": "C:\\Users\\hoge\\Desktop\\Yomiage",
-    "immediate": true
+    "immediate": true,
+    "stdInOut": {
+      ".*": ""
+    },
+    "executionComment": ""
   }
 }
